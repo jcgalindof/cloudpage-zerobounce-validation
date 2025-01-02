@@ -1,0 +1,9 @@
+<script runat="server">
+  /* Zero Bounce email validator */
+  Platform.Load('core', '1');
+   var json = HTTP.Get("https://api.zerobounce.net/v2/validate?api_key=" + insertApiKeyHere + "&email=" + insertEmailParameterHere + "&ip_address=156.124.12.145");
+   var parsedJSON = Platform.Function.ParseJSON(Stringify(json));
+   var content = Platform.Function.ParseJSON(parsedJSON.Content);
+   var status = content.status; 
+   Platform.Response.Write("Status:" + status);
+</script>
