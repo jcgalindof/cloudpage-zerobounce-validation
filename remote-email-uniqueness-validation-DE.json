@@ -1,0 +1,15 @@
+%%[
+/* Remote function for email uniqueness validation in a DE */
+SET @LPDE_Name = QueryParameter('LPDE_Name')
+SET @email_url_value = QueryParameter('unique_id')
+IF @email_url_value != '' then
+  SET @validate_email_user = RowCount(LookupRows(@LPDE_Name,'Email',@email_url_value)) 
+  IF @validate_email_user == '' then
+    SET @results = "true"
+    OUTPUT(v(@results))
+   ELSE
+     SET @results = "false"
+     OUTPUT(v(@results))
+   ENDIF
+ENDIF
+]%%
