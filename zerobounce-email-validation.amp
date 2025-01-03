@@ -1,17 +1,3 @@
 %%[
-  SET @KeysDE = "Encrypted_Keys"
-  SET @ProjectURL = "https://mcfmxk1g37c1jn91t2tp6mmtn3l1.pub.sfmc-content.com/t2ta1i15edl"
-  SET @Rows = LookupRows(@KeysDE, "Project_URL", @ProjectURL)
-  SET @RowCount = RowCount(@Rows)
-  IF @RowCount > 0 THEN
-    SET @Row = Row(@rows, 1)
-    SET @str = Field(@Row, "CLIENT_SECRET")
-    SET @passwordExtKey = "ZeroBounceKey"
-    SET @saltExtKey = "ZeroBounceSalt"
-    SET @initVectorExtKey = "ZeroBounceVector"
-    SET @DecAES = DecryptSymmetric(@str, "aes", @passwordExtKey, @null, @saltExtKey, @null, @initVectorExtKey, @null)
-    Output(Concat("API Key:" + @DecAES))
-  ELSE
-    Output(Concat("ERROR, NO PROJECT FOUND"))
-  ENDIF
+
  ]%%
