@@ -21,7 +21,7 @@
         var parsedJSON = Platform.Function.ParseJSON(Stringify(json));
         var content = Platform.Function.ParseJSON(parsedJSON.Content);
         var status = content.status;
-        Platform.Function.Write(json)
+        Platform.Response.Write(json);
         if (status == "valid") {
           Platform.Variable.SetValue("@response", "true");
         } else {
