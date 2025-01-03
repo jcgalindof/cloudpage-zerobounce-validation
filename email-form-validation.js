@@ -8,7 +8,7 @@ $('#email-form').validate({
         'email': {
             required: true,
             "remote": {
-                url: '',
+                url: 'https://mcfmxk1g37c1jn91t2tp6mmtn3l1.pub.sfmc-content.com/15525panl1g',
                 type: "post",
                 data:{
                     unique_id: function () {
@@ -18,7 +18,7 @@ $('#email-form').validate({
                 }
             },
             "zerobounce": {
-                url: '',
+                url: 'https://mcfmxk1g37c1jn91t2tp6mmtn3l1.pub.sfmc-content.com/t2ta1i15edl',
                 type: "post",
                 data: {
                     unique_id: function() {
