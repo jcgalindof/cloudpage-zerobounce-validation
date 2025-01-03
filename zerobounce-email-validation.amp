@@ -20,11 +20,12 @@
     var parsedJSON = Platform.Function.ParseJSON(Stringify(json));
     var content = Platform.Function.ParseJSON(parsedJSON.Content);
     var status = content.status;
-    if (status == "valid") {
+    Platform.Response.Write('{"status":'+ status + '}')
+    /*if (status == "valid") {
       Platform.Response.Write("true");
     } else {
       Platform.Response.Write("false");
-    }
+    }*/
  </script>
  %%[
   ELSE
