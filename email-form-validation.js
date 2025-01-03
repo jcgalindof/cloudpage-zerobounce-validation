@@ -16,15 +16,6 @@ $('#email-form').validate({
                     },
                     LPDE_Name: "ZeroBounceValidation"
                 }
-            },
-            "zerobounce": {
-                url: 'https://mcfmxk1g37c1jn91t2tp6mmtn3l1.pub.sfmc-content.com/t2ta1i15edl',
-                type: "post",
-                data: {
-                    unique_id: function() {
-                        return $('#email').val();
-                    }
-                }
             }
         },
         'optin': {
