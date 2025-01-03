@@ -22,7 +22,7 @@
         var content = Platform.Function.ParseJSON(parsedJSON.Content);
         var status = content.status;
         Platform.Response.Write(Stringify(json));
-        if (status == "valid") {
+        if (status == "valid" || status == "catch-all") {
           Platform.Variable.SetValue("@response", "true");
         } else {
           Platform.Variable.SetValue("@response", "false");
