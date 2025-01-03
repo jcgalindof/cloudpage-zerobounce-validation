@@ -1,6 +1,6 @@
 %%[
   SET @KeysDE = "Encrypted_Keys"
-  SET @ProjectURL = "https://mcfmxk1g37c1jn91t2tp6mmtn3l1.pub.sfmc-content.com/t2ta1i15edl"
+  SET @ProjectURL = RequestParameter('PageURL')
   SET @Rows = LookupRows(@KeysDE, "Project_URL", @ProjectURL)
   SET @RowCount = RowCount(@Rows)
   IF @RowCount > 0 THEN

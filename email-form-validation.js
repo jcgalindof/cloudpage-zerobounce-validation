@@ -8,11 +8,21 @@ $('#email-form').validate({
         'email': {
             required: true,
             "remote": {
-                url: 'https://cloud.mail.colgatepalmolive.com.mx/giveaways-doctorvalidation',
+                url: '',
                 type: "post",
                 data:{
                     unique_id: function () {
                         return $('#email').val();
+                    },
+                    LPDE_Name: "ZeroBounceValidation"
+                }
+            },
+            "zerobounce": {
+                url: '',
+                type: "post",
+                data: {
+                    unique_id: function() {
+                        return $('email').val();
                     }
                 }
             }
@@ -29,6 +39,7 @@ $('#email-form').validate({
             required: "<div class='regular_required_msg'>Por favor, verifica tu correo electrónico.</div>",
             email: "<div class='regular_required_msg'>Por favor, verifica tu correo electrónico.</div>",
             remote: "<div class='regular_required_msg'>El email ya está registrado</div>",
+            zerobounce: "<div class='regular_required_msg'>El email no parece ser válido</div>"
         },
         'optin': { // and here
             required: "<div class='regular_required_msg'>Acepta la política de privacidad</div>"
