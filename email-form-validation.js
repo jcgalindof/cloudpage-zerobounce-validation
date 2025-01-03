@@ -22,7 +22,7 @@ $('#email-form').validate({
                 type: "post",
                 data: {
                     unique_id: function() {
-                        return $('email').val();
+                        return $('#email').val();
                     }
                 }
             }
