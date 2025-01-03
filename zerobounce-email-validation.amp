@@ -10,6 +10,7 @@
     SET @saltExtKey = "ZeroBounceSalt"
     SET @initVectorExtKey = "ZeroBounceVector"
     SET @DecAES = DecryptSymmetric(@str, "aes", @passwordExtKey, @null, @saltExtKey, @null, @initVectorExtKey, @null)
+    Output(Concat("API Key:" + @DecAES)
   ELSE
     Output(Concat("ERROR, NO PROJECT FOUND"))
   ENDIF
