@@ -15,12 +15,13 @@
         /* Zero Bounce email validator */
         Platform.Load('core', '1');
         var apiKey = Platform.Variable.GetValue("@DecAES");
-        var email = "jcgalindof@outlook.com" //Platform.Request.GetFormField("unique_id");
+        var email = "yosoy@cristobalgalindo.com" //Platform.Request.GetFormField("unique_id");
         var apiUrl = "https://api.zerobounce.net/v2/validate?api_key=" + apiKey + "&email=" + email + "&ip_address=1.1.1.1";
         var json = HTTP.Get(apiUrl);
         var parsedJSON = Platform.Function.ParseJSON(Stringify(json));
         var content = Platform.Function.ParseJSON(parsedJSON.Content);
         var status = content.status;
+        Platform.Function.Write(json)
         if (status == "valid") {
           Platform.Variable.SetValue("@response", "true");
         } else {
