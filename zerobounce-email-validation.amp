@@ -10,24 +10,6 @@
     SET @saltExtKey = "ZeroBounceSalt"
     SET @initVectorExtKey = "ZeroBounceVector"
     SET @DecAES = DecryptSymmetric(@str, "aes", @passwordExtKey, @null, @saltExtKey, @null, @initVectorExtKey, @null)
- ]%%
- <script runat="server">
-   /* Zero Bounce email validator */
-   Platform.Load('core', '1');
-   var apiKey = Variable.GetValue("@DecAES");
-   var email = "yosoy@cristobalgalindo.com" //Platform.Request.GetFormField("unique_id");
-    var json = HTTP.Get("https://api.zerobounce.net/v2/validate?api_key=" + apiKey + "&email=" + email + "&ip_address=");
-    var parsedJSON = Platform.Function.ParseJSON(Stringify(json));
-    var content = Platform.Function.ParseJSON(parsedJSON.Content);
-    var status = content.status;
-    Platform.Response.Write('{"status":'+ status + '}')
-    /*if (status == "valid") {
-      Platform.Response.Write("true");
-    } else {
-      Platform.Response.Write("false");
-    }*/
- </script>
- %%[
   ELSE
     Output(Concat("ERROR, NO PROJECT FOUND"))
   ENDIF
