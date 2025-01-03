@@ -14,7 +14,7 @@
       <script runat="server">
         /* Zero Bounce email validator */
         Platform.Load('core', '1');
-        var apiKey = Platforn.Variable.GetValue("@DecAES");
+        var apiKey = Platform.Variable.GetValue("@DecAES");
         var email = "yosoy@cristobalgalindo.com" //Platform.Request.GetFormField("unique_id");
         var apiUrl = "https://api.zerobounce.net/v2/validate?api_key=" + apiKey + "&email=" + email + "&ip_address=1.1.1.1";
         var json = HTTP.Get(apiUrl);
