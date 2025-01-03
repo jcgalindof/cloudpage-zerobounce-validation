@@ -22,9 +22,9 @@
         var content = Platform.Function.ParseJSON(parsedJSON.Content);
         var status = content.status;
         if (status == "valid") {
-          Platform.Variable.SetValue("@DecAES", "true");
+          Platform.Variable.SetValue("@response", "true");
         } else {
-          Platform.Variable.SetValue("@DecAES", "false");
+          Platform.Variable.SetValue("@response", "false");
         }
       </script>
     %%[
@@ -32,4 +32,9 @@
     SET @DecAES = "Row Not Found"
   ENDIF
 ]%%
-%%=v(@DecAES)=%%
+[
+  {
+    "decriptedApiKey" : "%%=v(@DecAES)=%%",
+    "isEmailValidResponse" : "%%=v(@response)=%%"
+  }
+]
