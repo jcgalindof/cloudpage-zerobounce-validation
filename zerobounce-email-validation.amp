@@ -4,9 +4,9 @@
   SET @Rows = LookupRows(@KeysDE, "Project_URL", @ProjectURL)
   SET @RowCount = RowCount(@Rows)
   IF @RowCount > 0 THEN
-    SET @DecAES = "asdfasdfasdf" /*DecryptSymmetric(@str, "aes", @passwordExtKey, @null, @saltExtKey, @null, @initVectorExtKey, @null)*/
-    Output(Concat("API Key:" + @DecAES))
+    SET @DecAES = "Row Found" /*DecryptSymmetric(@str, "aes", @passwordExtKey, @null, @saltExtKey, @null, @initVectorExtKey, @null)*/
   ELSE
-    Output(Concat("ERROR, NO PROJECT FOUND"))
+    SET @DecAES = "Row Not Found"
   ENDIF
- ]%%
+]%%
+%%=v(@DecAES)=%%
