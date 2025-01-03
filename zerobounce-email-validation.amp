@@ -22,9 +22,9 @@
         var content = Platform.Function.ParseJSON(parsedJSON.Content);
         var status = content.status;
         if (status == "valid") {
-          Platform.Varialbe.SetValue("@DecAES", "true");
+          Platform.Variable.SetValue("@DecAES", "true");
         } else {
-          Platform.Varialbe.SetValue("@DecAES", "false");
+          Platform.Variable.SetValue("@DecAES", "false");
         }
       </script>
     %%[
