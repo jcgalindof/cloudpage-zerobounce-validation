@@ -4,7 +4,7 @@
   SET @Rows = LookupRows(@KeysDE, "Project_URL", @ProjectURL)
   SET @RowCount = RowCount(@Rows)
   IF @RowCount > 0 THEN
-    SET @Row = @Rows(@i)
+    SET @Row = Row(@rows, 1)
     SET @str = Field(@Row, "CLIENT_SECRET")
     SET @passwordExtKey = "ZeroBounceKey"
     SET @saltExtKey = "ZeroBounceSalt"
