@@ -23,9 +23,9 @@
         var status = content.status;
         //Platform.Response.Write(Stringify(json));
         if (status == "valid" || status == "catch-all") {
-          Platform.Variable.SetValue("@response", "true");
+          Platform.Response.Write("true");
         } else {
-          Platform.Variable.SetValue("@response", "false");
+          Platform.Response.Write("false");
         }
       </script>
     %%[
@@ -33,9 +33,3 @@
     SET @DecAES = "Row Not Found"
   ENDIF
 ]%%
-[
-  {
-    "decriptedApiKey" : "%%=v(@DecAES)=%%",
-    "isEmailValidResponse" : "%%=v(@response)=%%"
-  }
-]
