@@ -10,8 +10,25 @@
     SET @saltExtKey = "ZeroBounceSalt"
     SET @initVectorExtKey = "ZeroBounceVector"
     SET @DecAES = DecryptSymmetric(@str, "aes", @passwordExtKey, @null, @saltExtKey, @null, @initVectorExtKey, @null)
+    ]%%
+      <script runat="server">
+        /* Zero Bounce email validator */
+        Platform.Load('core', '1');
+        var apiKey = Platforn.Variable.GetValue("@DecAES");
+        var email = "yosoy@cristobalgalindo.com" //Platform.Request.GetFormField("unique_id");
+        var json = HTTP.Get("https://api.zerobounce.net/v2/validate?api_key=" + apiKey + "&email=" + email + "&ip_address=");
+        var parsedJSON = Platform.Function.ParseJSON(Stringify(json));
+        var content = Platform.Function.ParseJSON(parsedJSON.Content);
+        var status = content.status;
+        if (status == "valid") {
+          Platform.Varialbe.SetValue("@DecAES", "true");
+        } else {
+          Platform.Varialbe.SetValue("@DecAES", "false");
+        }
+      </script>
+    %%[
   ELSE
     SET @DecAES = "Row Not Found"
   ENDIF
- ]%%
- %%=v(@DecAES)=%%
+]%%
+%%=v(@DecAES)=%%
