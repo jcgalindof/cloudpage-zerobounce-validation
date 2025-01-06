@@ -11,6 +11,10 @@
     ENDIF
   ELSE 
     SET @results = "false"
-  OUTPUT(v(@results))
   ENDIF
 ]%%
+<script runat="server">
+  Platform.Load('core', '1');
+  var results = Variable.GetValue("@results");
+  Write(results);
+</script>
