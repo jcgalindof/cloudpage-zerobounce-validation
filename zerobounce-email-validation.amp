@@ -1,47 +1,36 @@
-<script runat="server">
-	Platform.Load("core","1");
-	try {
-    </script>
-      %%[
-          SET @KeysDE = "Encrypted_Keys"
-          SET @ProjectURL = RequestParameter('PageURL')
-          SET @Rows = LookupRows(@KeysDE, "Project_URL", @ProjectURL)
-          SET @RowCount = RowCount(@Rows)
-          SET @unique_id = RequestParameter('unique_id')
-          IF @RowCount > 0 THEN
-            SET @Row = Row(@rows, 1)
-            SET @str = Field(@Row, "CLIENT_SECRET")
-            SET @passwordExtKey = "ZeroBounceKey"
-            SET @saltExtKey = "ZeroBounceSalt"
-            SET @initVectorExtKey = "ZeroBounceVector"
-            SET @DecAES = DecryptSymmetric(@str, "aes", @passwordExtKey, @null, @saltExtKey, @null, @initVectorExtKey, @null)
-            ]%%
-              <script runat="server">
-                /* Zero Bounce email validator */
-                Platform.Load('core', '1');
-                var apiKey = Platform.Variable.GetValue("@DecAES");
-                var email = Platform.Variable.GetValue("unique_id");
-                var apiUrl = "https://api.zerobounce.net/v2/validate?api_key=" + apiKey + "&email=" + email + "&ip_address=1.1.1.1";
-                var json = HTTP.Get(apiUrl);
-                var parsedJSON = Platform.Function.ParseJSON(Stringify(json));
-                var content = Platform.Function.ParseJSON(parsedJSON.Content);
-                var status = content.status;
-                //Platform.Response.Write(Stringify(json));
-                if (status == "valid" || status == "catch-all") {
-                  Platform.Response.Write("true");
-                } else {
-                  Platform.Response.Write("false");
-                }
-              </script>
-            %%[
-          ELSE
-            SET @DecAES = "Row Not Found"
-          ENDIF
-      ]%%
-    <script runat="server">
-	}
-	catch (err) {
-		Write("Error Message: " + Stringify(err.message) + Stringify(err.description));
-	}
-</script>
-
+%%[
+  SET @KeysDE = "Encrypted_Keys"
+  SET @ProjectURL = RequestParameter('PageURL')
+  SET @Rows = LookupRows(@KeysDE, "Project_URL", @ProjectURL)
+  SET @RowCount = RowCount(@Rows)
+  SET @unique_id = RequestParameter('unique_id')
+  IF @RowCount > 0 THEN
+    SET @Row = Row(@rows, 1)
+    SET @str = Field(@Row, "CLIENT_SECRET")
+    SET @passwordExtKey = "ZeroBounceKey"
+    SET @saltExtKey = "ZeroBounceSalt"
+    SET @initVectorExtKey = "ZeroBounceVector"
+    SET @DecAES = DecryptSymmetric(@str, "aes", @passwordExtKey, @null, @saltExtKey, @null, @initVectorExtKey, @null)
+    ]%%
+      <script runat="server">
+        /* Zero Bounce email validator */
+        Platform.Load('core', '1');
+        var apiKey = Platform.Variable.GetValue("@DecAES");
+        var email = Platform.Variable.GetValue("@unique_id");
+        var apiUrl = "https://api.zerobounce.net/v2/validate?api_key=" + apiKey + "&email=" + email + "&ip_address=1.1.1.1";
+        var json = HTTP.Get(apiUrl);
+        var parsedJSON = Platform.Function.ParseJSON(Stringify(json));
+        var content = Platform.Function.ParseJSON(parsedJSON.Content);
+        var status = content.status;
+        //Platform.Response.Write(Stringify(json));
+        if (status == "valid" || status == "catch-all") {
+          Platform.Response.Write("true");
+        } else {
+          Platform.Response.Write("false");
+        }
+      </script>
+    %%[
+  ELSE
+    SET @DecAES = "Row Not Found"
+  ENDIF
+]%%
