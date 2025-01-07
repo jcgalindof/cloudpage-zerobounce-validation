@@ -3,7 +3,7 @@
   SET @ProjectURL = RequestParameter('PageURL')
   SET @Rows = LookupRows(@KeysDE, "Project_URL", @ProjectURL)
   SET @RowCount = RowCount(@Rows)
-  SET @unique_id = 'calmdown@cocobongo.com' /*RequestParameter('unique_id')*/
+  SET @unique_id = RequestParameter('unique_id')
   IF @RowCount > 0 THEN
     SET @Row = Row(@rows, 1)
     SET @str = Field(@Row, "CLIENT_SECRET")
