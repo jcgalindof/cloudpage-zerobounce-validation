@@ -24,11 +24,11 @@
         var status = content.status;
         Platform.Response.Write(Stringify(json));
         Platform.Response.Write(email);
-        if (status == "valid" || status == "catch-all") {
-          Platform.Response.Write("true");
-        } else {
-          Platform.Response.Write("false");
-        }
+        //if (status == "valid" || status == "catch-all") {
+        //  Platform.Response.Write("true");
+        //} else {
+        //  Platform.Response.Write("false");
+        //}
       </script>
     %%[
   ELSE
