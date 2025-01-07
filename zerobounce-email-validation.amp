@@ -3,7 +3,7 @@
   SET @ProjectURL = RequestParameter('PageURL')
   SET @Rows = LookupRows(@KeysDE, "Project_URL", @ProjectURL)
   SET @RowCount = RowCount(@Rows)
-  SET @unique_id = RequestParameter('unique_id')
+  SET @unique_id = 'calmdown@cocobongo.com' /*RequestParameter('unique_id')*/
   IF @RowCount > 0 THEN
     SET @Row = Row(@rows, 1)
     SET @str = Field(@Row, "CLIENT_SECRET")
@@ -16,7 +16,7 @@
         /* Zero Bounce email validator */
         Platform.Load('core', '1');
         var apiKey = Platform.Variable.GetValue("@DecAES");
-        var email = 'calmdown@colpal.com' //Platform.Variable.GetValue("@unique_id");
+        var email = Platform.Variable.GetValue("@unique_id");
         var apiUrl = "https://api.zerobounce.net/v2/validate?api_key=" + apiKey + "&email=" + email + "&ip_address=1.1.1.1";
         var json = HTTP.Get(apiUrl);
         var parsedJSON = Platform.Function.ParseJSON(Stringify(json));
