@@ -16,7 +16,7 @@
         /* Zero Bounce email validator */
         Platform.Load('core', '1');
         var apiKey = Platform.Variable.GetValue("@DecAES");
-        var email = 'google@google.com'
+        var email = 'valid@example.com'
         var apiUrl = "https://api.zerobounce.net/v2/validate?api_key=" + apiKey + "&email=" + email + "&ip_address=1.1.1.1";
         var json = HTTP.Get(apiUrl);
         var parsedJSON = Platform.Function.ParseJSON(Stringify(json));
