@@ -1,4 +1,5 @@
 %%[
+  /* This file is publicly accessible at https://mcfmxk1g37c1jn91t2tp6mmtn3l1.pub.sfmc-content.com/t2ta1i15edl */
   SET @KeysDE = "Encrypted_Keys"
   SET @ProjectURL = RequestParameter('PageURL')
   SET @Rows = LookupRows(@KeysDE, "Project_URL", @ProjectURL)
