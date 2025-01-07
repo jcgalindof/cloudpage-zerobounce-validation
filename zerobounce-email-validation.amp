@@ -32,6 +32,6 @@
       </script>
     %%[
   ELSE
-    SET @DecAES = "Row Not Found"
+    Output('No Rows Found')
   ENDIF
 ]%%
